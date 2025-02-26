@@ -1,42 +1,85 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.input-box {
+    width: 500px;
+    padding-right: 30px; /* Пространство для кнопки */
+    min-height: 200px;
+    border: 2px solid black;
+    resize: none;
+    padding: 5px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-container {
+    width: 500px;
+    position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.note-list {
+    list-style-type: none;
+    margin: 0px;
+    display: flex;
+    gap: 30px;
+    margin: 30px;
+    flex-wrap: wrap;
 }
 
-.card {
-  padding: 2em;
+.list-item {
+    border: 2px solid black;
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    position: relative;
+    font-size: 30px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 
-.read-the-docs {
-  color: #888;
+
+.btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 2px solid black;
+    font-size: 20px;
+    background-color: white;
+}
+
+.header-btn:hover {
+    background-color: rgb(232, 223, 223);
+}
+
+
+
+.list-btn {
+    color: red;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+
+.list-btn:hover {
+    background-color: rgb(232, 223, 223);
+}
+
+.form-btn {
+    position: absolute;
+    right: -10px; /* Отступ от правого края поля ввода */
+    bottom: 9px; /* Отступ от нижнего края поля ввода */
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.form-btn:hover {
+    background-color:#0056b3;;
+}
+
+textarea {
+    font-size: 20px;
 }
