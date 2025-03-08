@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
@@ -7,40 +7,40 @@ import './App.css'
 const App: React.FC = () => {
   const [notes, setNotes] = useState<{ id: number; content: string }[]>([]);
 
-  // Загрузка заметок при монтировании компонента
-  useEffect(() => {
-    fetchNotes();
-  }, []);
-
-  // Функция для получения списка заметок
-  const fetchNotes = async () => {
+  // Мемоизированная функция для получения списка заметок
+  const fetchNotes = useCallback(async () => {
     try {
       const response = await axios.get("http://localhost:7070/notes");
       setNotes(response.data);
     } catch (error) {
       console.error("Ошибка при загрузке заметок:", error);
     }
-  };
+  }, []);
 
-  // Функция для добавления новой заметки
-  const addNote = async (content: string) => {
+  // Загрузка заметок при монтировании компонента
+  useEffect(() => {
+    fetchNotes();
+  }, [fetchNotes]);
+
+  // Мемоизированная функция для добавления новой заметки
+  const addNote = useCallback(async (content: string) => {
     try {
       await axios.post("http://localhost:7070/notes", { id: 0, content });
       fetchNotes(); // Обновляем список заметок
     } catch (error) {
       console.error("Ошибка при добавлении заметки:", error);
     }
-  };
+  }, [fetchNotes]);
 
-  // Функция для удаления заметки
-  const deleteNote = async (id: number) => {
+  // Мемоизированная функция для удаления заметки
+  const deleteNote = useCallback(async (id: number) => {
     try {
       await axios.delete(`http://localhost:7070/notes/${id}`);
       fetchNotes(); // Обновляем список заметок
     } catch (error) {
       console.error("Ошибка при удалении заметки:", error);
     }
-  };
+  }, [fetchNotes]);
 
   return (
     <div>
